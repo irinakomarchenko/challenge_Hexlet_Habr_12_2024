@@ -1,0 +1,821 @@
+{
+	"info": {
+		"_postman_id": "6c1b5226-8b4f-4670-a1c6-87cb5af7639f",
+		"name": "GET /time/add",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40414677"
+	},
+	"item": [
+		{
+			"name": "Mandatory timestamp query-parameter",
+			"item": [
+				{
+					"name": "Get with an invalid timestamp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is nok\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return an error\", function () {\r",
+									"    pm.response.to.have.jsonBody('level', 'error');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=b016-10-10",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "b016-10-10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get without a timestamp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is nok\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return an error\", function () {\r",
+									"    pm.response.to.have.jsonBody('level', 'error');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add time",
+			"item": [
+				{
+					"name": "Add all time units",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return new time\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', 'Sun Feb 11 2018 01:02:03 GMT+0000');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=1&months=4&days=1&hours=1&minutes=2&seconds=3&milliseconds=4",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "years",
+									"value": "1"
+								},
+								{
+									"key": "months",
+									"value": "4"
+								},
+								{
+									"key": "days",
+									"value": "1"
+								},
+								{
+									"key": "hours",
+									"value": "1"
+								},
+								{
+									"key": "minutes",
+									"value": "2"
+								},
+								{
+									"key": "seconds",
+									"value": "3"
+								},
+								{
+									"key": "milliseconds",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a valid year",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return new time\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', 'Wed Oct 10 2018 00:00:00 GMT+0000');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=2",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "years",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a negative year",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return new time\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', 'Fri Oct 10 2014 00:00:00 GMT+0000');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=-2",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "years",
+									"value": "-2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a non-integer year",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is nok\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return an error\", function () {\r",
+									"    pm.response.to.have.jsonBody('level', 'error');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=2.7",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "years",
+									"value": "2.7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Optional format query-parameter",
+			"item": [
+				{
+					"name": "Get in YYYY format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get in YYYY-MM format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016-10');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY-MM",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY-MM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get in YYYY-MM-DD format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016-10-10');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY-MM-DD",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY-MM-DD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get in YYYY-MM-DDThh:mmTZD format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016-10-10T00:00+00:00');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY-MM-DDThh:mmTZD",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY-MM-DDThh:mmTZD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get in YYYY-MM-DDThh:mm:ssTZD format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016-10-10T00:00:00+00:00');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY-MM-DDThh:mm:ssTZD",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY-MM-DDThh:mm:ssTZD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get in YYYY-MM-DDThh:mm:ss.sTZD format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016-10-10T00:00:00.55+00:00');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYYY-MM-DDThh:mm:ssTZD&milliseconds=550",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYYY-MM-DDThh:mm:ssTZD"
+								},
+								{
+									"key": "milliseconds",
+									"value": "550"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Optional locale query-parameter",
+			"item": [
+				{
+					"name": "Get in ru-RU locale",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded locale\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', 'Пон Окт 10 2016 00:00:00 GMT+0000');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&locale=ru-RU",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "locale",
+									"value": "ru-RU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Optional strict query-parameter (assumed for format only)",
+			"item": [
+				{
+					"name": "Get with strict false",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return the exact timestamp in the corresponded time format\", function () {\r",
+									"    pm.response.to.have.jsonBody('sum', '2016');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYY&strict=false",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYY"
+								},
+								{
+									"key": "strict",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get with strict true",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is nok\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json should return an error\", function () {\r",
+									"    pm.response.to.have.jsonBody('level', 'error');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10&format=YYY&strict=true",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"time",
+								"add"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "2016-10-10"
+								},
+								{
+									"key": "format",
+									"value": "YYY"
+								},
+								{
+									"key": "strict",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get with a valid timestamp and default optional quiery-parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response json should return the exact timestamp\", function () {\r",
+							"    pm.response.to.have.jsonBody('sum', 'Mon Oct 10 2016 00:00:00 GMT+0000');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/time/add?timestamp=2016-10-10",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"time",
+						"add"
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "2016-10-10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
